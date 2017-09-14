@@ -1,0 +1,20 @@
+import Enfermedad.*
+import Persona.*
+
+describe "Tests" {
+	var malaria = new EnfermedadInfecciosa(500)
+	var otitis = new EnfermedadInfecciosa(100)
+	var lupus = new EnfermedadAutoinmune(10000)
+	var logan = new Persona(3000000, 36)
+	var frank = new Persona(3500000, 36)
+	var otraMalaria = new EnfermedadAutoinmune(800)
+
+	fixture {
+		logan.contraerEnfermedad(malaria, lupus, otitis)
+		frank.contraerEnfermedad(lupus)
+	}
+	test "Logan pasa un dia, las enfermedades infecciosas son"{
+		logan.pasarUndia()
+		assert.equals([], logan.enfermedades().filter({enfermedad => enfermedad.esAgresiva})
+	}
+}
